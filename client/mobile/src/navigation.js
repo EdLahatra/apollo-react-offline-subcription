@@ -7,7 +7,6 @@ import {
   createReduxBoundAddListener,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
-// import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 import update from 'immutability-helper';
@@ -73,6 +72,12 @@ export const navigationReducer = (state = initialState, action) => {
             state,
           );
         }
+      }
+      if (action.payload === undefined) {
+        nextState = AppNavigator.router.getStateForAction(
+          NavigationActions.navigate({ routeName: 'Signin' }),
+          state,
+        );
       }
       break;
     case LOGOUT:
