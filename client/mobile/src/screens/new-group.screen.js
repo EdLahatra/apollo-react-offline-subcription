@@ -15,8 +15,10 @@ import update from 'immutability-helper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 
+import { USER_QUERY } from 'common/graphql/user.query';
+
 import SelectedUserList from '../components/selected-user-list.component';
-import { USER_QUERY } from '../graphql/user.query';
+
 
 // eslint-disable-next-line
 const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {});
@@ -232,11 +234,13 @@ class NewGroup extends Component {
   }
 
   isSelected(user) {
+    // eslint-disable-next-line
     return ~this.state.selected.indexOf(user);
   }
 
   toggle(user) {
     const index = this.state.selected.indexOf(user);
+    // eslint-disable-next-line
     if (~index) {
       const selected = update(this.state.selected, { $splice: [[index, 1]] });
 

@@ -15,10 +15,10 @@ import { graphql, compose } from 'react-apollo';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import GROUP_QUERY from '../graphql/group.query';
-import { USER_QUERY } from '../graphql/user.query';
-import DELETE_GROUP_MUTATION from '../graphql/delete-group.mutation';
-import LEAVE_GROUP_MUTATION from '../graphql/leave-group.mutation';
+import GROUP_QUERY from 'common/graphql/group.query';
+import { USER_QUERY } from 'common/graphql/user.query';
+import DELETE_GROUP_MUTATION from 'common/graphql/delete-group.mutation';
+import LEAVE_GROUP_MUTATION from 'common/graphql/leave-group.mutation';
 
 const resetAction = NavigationActions.reset({
   index: 0,

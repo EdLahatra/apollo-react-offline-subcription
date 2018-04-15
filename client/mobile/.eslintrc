@@ -38,7 +38,8 @@
     "react/prop-types": "off",
     "no-confusing-arrow": "off",
     "react/sort-comp": "off",
-    "no-undef": "off"
+    "no-undef": "off",
+    "react/require-default-props": "off"
   },
   "parser": "babel-eslint",
   "parserOptions": {

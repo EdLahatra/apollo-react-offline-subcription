@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { NavigationActions, addNavigationHelpers, StackNavigator, TabNavigator } from 'react-navigation';
+import {
+  NavigationActions, addNavigationHelpers, StackNavigator, TabNavigator,
+} from 'react-navigation';
 import {
   createReduxBoundAddListener,
   createReactNavigationReduxMiddleware,
@@ -11,7 +13,13 @@ import { graphql, compose } from 'react-apollo';
 import update from 'immutability-helper';
 import { map } from 'lodash';
 import { Buffer } from 'buffer';
-import { REHYDRATE } from 'redux-persist';
+
+import { USER_QUERY } from 'common/graphql/user.query';
+import MESSAGE_ADDED_SUBSCRIPTION from 'common/graphql/message-added.subscription';
+import GROUP_ADDED_SUBSCRIPTION from 'common/graphql/group-added.subscription';
+import REHYDRATE from 'common/redux-persist';
+import { wsClient } from 'common/store';
+import { LOGOUT } from 'common/constants/constants';
 
 import Groups from './screens/groups.screen';
 import Messages from './screens/messages.screen';
@@ -21,23 +29,15 @@ import NewGroup from './screens/new-group.screen';
 import Signin from './screens/signin.screen';
 import Settings from './screens/settings.screen';
 
-import { USER_QUERY } from './graphql/user.query';
-import MESSAGE_ADDED_SUBSCRIPTION from './graphql/message-added.subscription';
-import GROUP_ADDED_SUBSCRIPTION from './graphql/group-added.subscription';
-
-import { wsClient } from './app';
-
-import { LOGOUT } from './constants/constants';
-
 // tabs in main screen d
-const MainScreenNavigator = TabNavigator({
+const MainScreenNavigator = TabNavigator({ // eslint-disable-line
   Chats: { screen: Groups },
   Settings: { screen: Settings },
 }, {
   initialRouteName: 'Chats',
 });
 
-const AppNavigator = StackNavigator({
+const AppNavigator = StackNavigator({ // eslint-disable-line
   Main: { screen: MainScreenNavigator },
   Signin: { screen: Signin },
   Messages: { screen: Messages },
@@ -62,7 +62,7 @@ const initialState = AppNavigator.router.getStateForAction(NavigationActions.res
 export const navigationReducer = (state = initialState, action) => {
   let nextState = AppNavigator.router.getStateForAction(action, state);
   const { routes, index } = state;
-  console.log(action);
+  console.log(action); // eslint-disable-line
   switch (action.type) {
     case REHYDRATE:
       // convert persisted data to Immutable and confirm rehydration

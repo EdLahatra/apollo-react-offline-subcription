@@ -14,9 +14,9 @@ import {
 import { graphql, compose } from 'react-apollo';
 import { connect } from 'react-redux';
 
-import { setCurrentUser } from '../actions/auth.actions';
-import LOGIN_MUTATION from '../graphql/login.mutation';
-import SIGNUP_MUTATION from '../graphql/signup.mutation';
+import { setCurrentUser } from 'common/actions/auth.actions';
+import LOGIN_MUTATION from 'common/graphql/login.mutation';
+import SIGNUP_MUTATION from 'common/graphql/signup.mutation';
 
 const styles = StyleSheet.create({
   container: {
@@ -98,7 +98,7 @@ class Signin extends Component {
     this.setState({ loading: true });
 
     // this.props.login({ email, password })
-    this.props.login({ email: 'Jovanny91@yahoo.com', password: 'J1SdSIqOegBeH_C' })
+    this.props.login({ email: 'Elbert.King@yahoo.com', password: 'HbXNFGAfJ8cFYg2' })
       .then(({ data: { login: user } }) => {
         this.props.dispatch(setCurrentUser(user));
         this.setState({ loading: false });

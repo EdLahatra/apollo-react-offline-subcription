@@ -13,8 +13,8 @@ import {
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 
-import { USER_QUERY } from '../graphql/user.query';
-import { logout } from '../actions/auth.actions';
+import { USER_QUERY } from 'common/graphql/user.query';
+import { logout } from 'common/actions/auth.actions';
 
 const styles = StyleSheet.create({
   container: {

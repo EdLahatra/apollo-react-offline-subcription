@@ -16,8 +16,8 @@ import { NavigationActions } from 'react-navigation';
 import update from 'immutability-helper';
 import { connect } from 'react-redux';
 
-import { USER_QUERY } from '../graphql/user.query';
-import CREATE_GROUP_MUTATION from '../graphql/create-group.mutation';
+import { USER_QUERY } from 'common/graphql/user.query';
+import CREATE_GROUP_MUTATION from 'common/graphql/create-group.mutation';
 import SelectedUserList from '../components/selected-user-list.component';
 
 const goToNewGroup = group => NavigationActions.reset({
@@ -131,6 +131,7 @@ class FinalizeGroup extends Component {
 
   remove(user) {
     const index = this.state.selected.indexOf(user);
+    // eslint-disable-next-line
     if (~index) {
       const selected = update(this.state.selected, { $splice: [[index, 1]] });
       this.setState({

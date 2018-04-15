@@ -18,13 +18,15 @@ import _ from 'lodash';
 import moment from 'moment';
 import { connect } from 'react-redux';
 
-import { wsClient } from '../app';
+import GROUP_QUERY from 'common/graphql/group.query';
+import CREATE_MESSAGE_MUTATION from 'common/graphql/create-message.mutation';
+import { USER_QUERY } from 'common/graphql/user.query';
+import MESSAGE_ADDED_SUBSCRIPTION from 'common/graphql/message-added.subscription';
+
+import { wsClient } from 'common/store';
 import Message from '../components/message.component';
 import MessageInput from '../components/message-input.component';
-import GROUP_QUERY from '../graphql/group.query';
-import CREATE_MESSAGE_MUTATION from '../graphql/create-message.mutation';
-import { USER_QUERY } from '../graphql/user.query';
-import MESSAGE_ADDED_SUBSCRIPTION from '../graphql/message-added.subscription';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -330,7 +332,6 @@ const createMessageMutation = graphql(CREATE_MESSAGE_MUTATION, {
           },
         },
         update: (store, { data: { createMessage } }) => {
-          console.log('eee ', message);
           // Read the data from our cache for this query.
           const groupData = store.readQuery({
             query: GROUP_QUERY,

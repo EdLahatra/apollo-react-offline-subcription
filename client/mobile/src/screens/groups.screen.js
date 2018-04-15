@@ -15,7 +15,7 @@ import moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 
-import { USER_QUERY } from '../graphql/user.query';
+import { USER_QUERY } from 'common/graphql/user.query';
 
 const styles = StyleSheet.create({
   container: {
@@ -201,7 +201,6 @@ class Groups extends Component {
       );
     }
 
-    console.log('user', user);
     if (user && !user.groups.length) {
       return (
         <View style={styles.container}>
