@@ -14,10 +14,7 @@ import thunk from 'redux-thunk';
 import { setContext } from 'apollo-link-context';
 import _ from 'lodash'; // eslint-disable-line
 
-import {
-  navigationReducer,
-  navigationMiddleware,
-} from '../mobile/src/navigation';
+import { navigationReducer, navigationMiddleware } from '../mobile/src/navigation';
 import auth from './reducers/auth.reducer';
 import { logout } from './actions/auth.actions';
 import storage from '../es/storage';
@@ -26,7 +23,7 @@ import conf from './config';
 const config = {
   key: 'root',
   storage,
-  // blacklist: ['nav'], // don't persist nav for now
+  // blacklist: ['nav'], // don't persist nav for now k
 };
 
 const reducer = persistCombineReducers(config, {

@@ -1,4 +1,4 @@
-import { client, wsClient } from '../store';
+import { client, wsClient } from '../store.1';
 import { SET_CURRENT_USER, LOGOUT } from '../constants/constants';
 
 export const setCurrentUser = user => ({
@@ -6,9 +6,9 @@ export const setCurrentUser = user => ({
   user,
 });
 
-export const logout = () => {
-  client.resetStore();
-  wsClient.unsubscribeAll(); // unsubscribe from all subscriptions
-  wsClient.close(); // close the WebSocket connection
+export const logout = (nav, navigationMiddleware) => {
+  client(nav, navigationMiddleware).resetStore();
+  wsClient(nav, navigationMiddleware).unsubscribeAll(); // unsubscribe from all subscriptions
+  wsClient(nav, navigationMiddleware).close(); // close the WebSocket connection
   return { type: LOGOUT };
 };

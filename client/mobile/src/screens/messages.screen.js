@@ -23,9 +23,11 @@ import CREATE_MESSAGE_MUTATION from 'common/graphql/create-message.mutation';
 import { USER_QUERY } from 'common/graphql/user.query';
 import MESSAGE_ADDED_SUBSCRIPTION from 'common/graphql/message-added.subscription';
 
-import { wsClient } from 'common/store';
+import { wsClient } from 'common/store.1';
 import Message from '../components/message.component';
 import MessageInput from '../components/message-input.component';
+
+import { navigationReducer, navigationMiddleware } from '../navigation';
 
 
 const styles = StyleSheet.create({
@@ -141,7 +143,7 @@ class Messages extends Component {
       }
 
       if (!this.reconnected) {
-        this.reconnected = wsClient.onReconnected(() => {
+        this.reconnected = wsClient(navigationReducer, navigationMiddleware).onReconnected(() => {
           this.props.refetch(); // check for any data lost during disconnect
         }, this);
       }

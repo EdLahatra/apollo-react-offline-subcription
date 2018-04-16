@@ -98,7 +98,7 @@ class Signin extends Component {
     this.setState({ loading: true });
 
     // this.props.login({ email, password })
-    this.props.login({ email: 'Elbert.King@yahoo.com', password: 'HbXNFGAfJ8cFYg2' })
+    this.props.login({ email: 'Jovanny91@yahoo.com', password: 'HbXNFGAfJ8cFYg2' })
       .then(({ data: { login: user } }) => {
         this.props.dispatch(setCurrentUser(user));
         this.setState({ loading: false });

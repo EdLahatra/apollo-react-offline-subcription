@@ -19,7 +19,6 @@ import { USER_QUERY } from 'common/graphql/user.query';
 
 import SelectedUserList from '../components/selected-user-list.component';
 
-
 // eslint-disable-next-line
 const sortObject = o => Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {});
 

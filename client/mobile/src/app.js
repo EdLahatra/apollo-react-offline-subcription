@@ -3,13 +3,18 @@ import { Provider } from 'react-redux';
 import { ApolloProvider } from 'react-apollo';
 
 import PersistGate from 'common/redux-persist/persistGate';
-import { store, client, persistor } from 'common/store';
+import persistStore from 'common/redux-persist/persistStore';
+import { store, client } from 'common/store.1';
 
-import AppWithNavigationState from './navigation';
+import AppWithNavigationState, { navigationReducer, navigationMiddleware } from './navigation';
+
+const stre = store(navigationReducer, navigationMiddleware);
+const persistor = persistStore(stre);
+const clientApollo = client(navigationReducer, navigationMiddleware);
 
 const App = () => (
-  <ApolloProvider client={client}>
-    <Provider store={store}>
+  <ApolloProvider client={clientApollo}>
+    <Provider store={stre}>
       <PersistGate persistor={persistor}>
         <AppWithNavigationState />
       </PersistGate>

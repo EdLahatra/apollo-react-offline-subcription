@@ -17,7 +17,7 @@ import { USER_QUERY } from 'common/graphql/user.query';
 import MESSAGE_ADDED_SUBSCRIPTION from 'common/graphql/message-added.subscription';
 import GROUP_ADDED_SUBSCRIPTION from 'common/graphql/group-added.subscription';
 import REHYDRATE from 'common/redux-persist';
-import { wsClient } from 'common/store';
+import { wsClient } from 'common/store.1';
 import { LOGOUT } from 'common/constants/constants';
 
 import Groups from './screens/groups.screen';
@@ -120,7 +120,7 @@ class AppWithNavigationState extends Component {
         this.reconnected();
       }
     } else if (!this.reconnected) {
-      this.reconnected = wsClient.onReconnected(() => {
+      this.reconnected = wsClient(navigationReducer, navigationMiddleware).onReconnected(() => {
         this.props.refetch(); // check for any data lost during disconnect
       }, this);
     }
